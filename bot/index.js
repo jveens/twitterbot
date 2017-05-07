@@ -53,7 +53,7 @@ var bot = new Twit({
 // 	}
 // );
 
-// // Get list of those we are following
+// Get list of those we are following
 // bot.get('friends/list',
 // 	{
 // 		screen_name: 'bots_jenny'
@@ -82,16 +82,65 @@ var bot = new Twit({
 // );
 
 // // send a DM
-bot.post('direct_messages/new',
-	{
-		screen_name: 'jennyveens',
-		text: 'Hey There JV'
-	},
-	function(err, data, response){
-		if (err) {
-			console.log(err);
-		} else {
-			console.log(data);
+// bot.post('direct_messages/new',
+// 	{
+// 		screen_name: 'jennyveens',
+// 		text: 'Hey There JV'
+// 	},
+// 	function(err, data, response){
+// 		if (err) {
+// 			console.log(err);
+// 		} else {
+// 			console.log(data);
+// 		}
+// 	}
+// );
+
+// // get home timeline
+function getBotTimeline() {
+	bot.get('statuses/home_timeline',
+		{
+			count: 5
+		},
+		function(err, data, response) {
+			if (err) {
+				console.log(err);
+			} else {
+
+				data.forEach(function(d){
+					console.log(d.text);
+					console.log(d.user.screen_name);
+					console.log(d.id_str)
+					console.log('\n');
+				});
+				// console.log(data);
+			}
 		}
-	}
-);
+	);
+}
+
+// bot.post('statuses/retweet/:id',
+// 	{
+// 		id: string
+// 	},
+// 	function(err, data, response){
+// 		if (err) {
+// 			console.log(err);
+// 		} else {
+// 			console.log(response);
+// 		}
+// 	}
+// );
+
+// bot.post('statuses/unretweet/:id',
+// 	{
+// 		id: string
+// 	},
+// 	function(err, data, response){
+// 		if (err) {
+// 			console.log(err);
+// 		} else {
+// 			console.log(response);
+// 		}
+// 	}
+// );
